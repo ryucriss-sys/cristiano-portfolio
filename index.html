@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cristiano Machado - Software Developer & Automation Specialist com forte background em Logística e WMS corporativo.">
-    <title>Cristiano Machado | Dev & Logistics Automation</title>
+    <meta name="description" content="Cristiano Machado - Software Engineer especializado em sistemas corporativos e arquiteturas escaláveis.">
+    <title>Cristiano Machado | Software Engineer</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Inter font for clean, corporate, readable UI -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -26,10 +27,10 @@
                         brand: {
                             50: '#f0f9ff',
                             100: '#e0f2fe',
-                            500: '#0ea5e9', 
+                            500: '#0ea5e9', // Trust blue
                             600: '#0284c7',
                             900: '#0c4a6e',
-                            950: '#082f49',
+                            950: '#082f49', // Deep corporate navy
                         },
                         slate: {
                             850: '#151e2e',
@@ -47,16 +48,27 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
+            background-color: #0f172a; /* Slate 900 */
+            color: #f8fafc; /* Slate 50 */
             overflow-x: hidden;
         }
 
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        /* Modern thin scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
 
+        /* Glassmorphism utilities */
         .glass-panel {
             background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(12px);
@@ -71,6 +83,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
+        /* Canvas interaction layer */
         #network-canvas {
             position: absolute;
             top: 0;
@@ -78,7 +91,7 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            pointer-events: none;
+            pointer-events: none; /* Let clicks pass through to content */
         }
     </style>
 </head>
@@ -88,6 +101,7 @@
     <nav class="fixed w-full z-50 top-0 glass-nav transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
                     <div class="w-8 h-8 rounded bg-gradient-to-br from-brand-500 to-brand-600 flex items-center justify-center shadow-lg shadow-brand-500/30">
                         <span class="font-bold text-white text-lg tracking-tighter">CM</span>
@@ -95,15 +109,17 @@
                     <span class="font-semibold tracking-wide text-gray-100 hidden sm:block">CRISTIANO MACHADO</span>
                 </div>
 
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#expertise" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Expertise</a>
                     <a href="#experience" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Trajetória</a>
                     <a href="#projects" class="text-sm font-medium text-gray-300 hover:text-white transition-colors">Soluções</a>
                     
+                    <!-- Language Selector (Visual Demo) -->
                     <div class="flex items-center gap-2 border-l border-gray-700 pl-8 ml-4">
-                        <button class="text-xs font-semibold text-white px-2 py-1 rounded bg-slate-800 border border-slate-600 transition-colors">PT</button>
-                        <button class="text-xs font-medium text-gray-500 hover:text-white px-2 py-1 rounded hover:bg-slate-800 transition-colors">IT</button>
-                        <button class="text-xs font-medium text-gray-500 hover:text-white px-2 py-1 rounded hover:bg-slate-800 transition-colors">EN</button>
+                        <button class="text-xs font-semibold text-white px-2 py-1 rounded bg-slate-800 border border-slate-600 transition-colors" title="Português">PT</button>
+                        <button class="text-xs font-medium text-gray-500 hover:text-white px-2 py-1 rounded hover:bg-slate-800 transition-colors" title="Italiano">IT</button>
+                        <button class="text-xs font-medium text-gray-500 hover:text-white px-2 py-1 rounded hover:bg-slate-800 transition-colors" title="English">EN</button>
                     </div>
 
                     <a href="#contact" class="inline-flex items-center justify-center px-5 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-brand-600 hover:bg-brand-500 shadow-lg shadow-brand-500/20 transition-all duration-200">
@@ -116,76 +132,145 @@
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-slate-900">
+        <!-- Abstract Grid Pattern -->
         <div class="absolute inset-0 bg-grid-pattern z-0 opacity-50"></div>
+        
+        <!-- Network Connections Animation (Logistics/Data theme) -->
         <canvas id="network-canvas"></canvas>
+        
+        <!-- Top Gradient Glow -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-brand-500/20 blur-[120px] rounded-full pointer-events-none z-0"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 
+                <!-- Hero Content -->
                 <div data-aos="fade-right" data-aos-duration="1000">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700 mb-6 backdrop-blur-sm">
                         <span class="relative flex h-2 w-2">
                           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                           <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                         </span>
-                        <span class="text-xs font-medium text-gray-300 tracking-wide uppercase">Transformando o chão de fábrica com código</span>
+                        <span class="text-xs font-medium text-gray-300 tracking-wide uppercase">Disponível para novos desafios globais</span>
                     </div>
                     
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-tight">
-                        Engenharia de Software para <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-blue-200">Operações Logísticas.</span>
+                        Engenharia de Software para <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-blue-200">Operações Críticas.</span>
                     </h1>
                     
                     <p class="text-lg sm:text-xl text-gray-400 mb-8 max-w-2xl leading-relaxed">
-                        Arquiteto de soluções que entende a operação física. Especializado em construir automações RPA, assistentes de Inteligência Artificial (RAG) e sistemas ERP corporativos integrados a ambientes WMS complexos.
+                        Arquiteto e Desenvolvedor especializado em construir sistemas escaláveis, ERPs corporativos e plataformas de dados de alta disponibilidade para logística, finanças e indústria.
                     </p>
                     
                     <div class="flex flex-col sm:flex-row gap-4">
                         <a href="#projects" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-brand-600 hover:bg-brand-500 shadow-lg shadow-brand-500/30 transition-all duration-200 hover:-translate-y-0.5">
-                            Ver Automações & Sistemas
+                            Ver Casos de Uso
                             <i class="ph-bold ph-arrow-right ml-2"></i>
                         </a>
                         <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 border border-slate-700 text-base font-medium rounded-lg text-gray-300 bg-slate-800/50 hover:bg-slate-700 hover:text-white backdrop-blur-sm transition-all duration-200">
-                            <i class="ph-bold ph-github-logo mr-2"></i>
-                            Acessar GitHub
+                            <i class="ph-bold ph-download-simple mr-2"></i>
+                            Download CV (PDF)
                         </a>
                     </div>
                 </div>
 
-                <!-- Hero Data Visualizer -->
+                <!-- Hero Data Visualizer (Dashboard Mockup) -->
                 <div class="hidden lg:block relative" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
                     <div class="glass-panel rounded-2xl p-6 shadow-2xl shadow-black/50 border border-slate-700/50 relative overflow-hidden">
+                        <!-- Shimmer effect -->
                         <div class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent animate-[shimmer_2s_infinite]"></div>
                         
                         <div class="flex items-center justify-between border-b border-slate-700/50 pb-4 mb-6">
                             <h3 class="font-semibold text-gray-200 flex items-center gap-2">
-                                <i class="ph-fill ph-trophy text-brand-500"></i> Reconhecimento Corporativo
+                                <i class="ph-fill ph-chart-line-up text-brand-500"></i> Performance do Sistema
                             </h3>
                             <div class="flex gap-1">
                                 <div class="w-2.5 h-2.5 rounded-full bg-slate-600"></div>
                                 <div class="w-2.5 h-2.5 rounded-full bg-slate-600"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+                                <div class="w-2.5 h-2.5 rounded-full bg-slate-600"></div>
                             </div>
                         </div>
 
                         <div class="grid grid-cols-2 gap-4 mb-6">
                             <div class="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
-                                <p class="text-sm text-gray-400 mb-1">Programa Kaizen</p>
-                                <p class="text-2xl font-bold text-white tracking-tight">Destaque<span class="text-brand-500 text-xl"> Quadrimestral</span></p>
+                                <p class="text-sm text-gray-400 mb-1">Uptime SLA</p>
+                                <p class="text-3xl font-bold text-white tracking-tight">99.99<span class="text-brand-500 text-xl">%</span></p>
                             </div>
                             <div class="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
-                                <p class="text-sm text-gray-400 mb-1">Inovação (2025)</p>
-                                <p class="text-2xl font-bold text-white tracking-tight">Melhor<span class="text-brand-500 text-xl"> Ideia do Ano</span></p>
+                                <p class="text-sm text-gray-400 mb-1">Experiência (Anos)</p>
+                                <p class="text-3xl font-bold text-white tracking-tight">+5<span class="text-brand-500 text-xl"></span></p>
                             </div>
                         </div>
 
+                        <!-- Pseudo Chart -->
                         <div class="h-32 w-full flex items-end gap-2 pt-4 border-t border-slate-700/50">
-                            <!-- Gráfico simulando ganhos operacionais -->
+                            <!-- Bars generated dynamically via CSS inline styles for visual effect -->
                             <div class="w-full bg-brand-900/50 rounded-t-sm" style="height: 30%"></div>
-                            <div class="w-full bg-brand-900/50 rounded-t-sm" style="height: 45%"></div>
-                            <div class="w-full bg-brand-900/50 rounded-t-sm" style="height: 60%"></div>
-                            <div class="w-full bg-brand-600/80 rounded-t-sm" style="height: 80%"></div>
-                            <div class="w-full bg-brand-500 rounded-t-sm" style="height: 100%; box-shadow: 0 0 15px rgba(14,165,233,0.4);"></div>
+                            <div class="w-full bg-brand-900/50 rounded-t-sm" style="height: 50%"></div>
+                            <div class="w-full bg-brand-900/50 rounded-t-sm" style="height: 40%"></div>
+                            <div class="w-full bg-brand-600/80 rounded-t-sm" style="height: 70%"></div>
+                            <div class="w-full bg-brand-500 rounded-t-sm" style="height: 90%; box-shadow: 0 0 15px rgba(14,165,233,0.4);"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Supremacy 1914 World Championship -->
+                <div class="group glass-panel rounded-2xl border border-slate-700/50 hover:border-brand-500/50 transition-all duration-300 flex flex-col md:col-span-2 relative mt-16 md:mt-20" data-aos="fade-up" data-aos-delay="200">
+                    
+                    <!-- Header with Image -->
+                    <div class="h-64 md:h-96 bg-slate-800 relative overflow-hidden rounded-t-2xl">
+                        <img src="sitesupremacycampeonatoundial2022a2024.jfif" alt="Supremacy 1914 World Championship" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 z-10">
+                            <span class="text-xs font-semibold text-yellow-400 bg-yellow-950 px-2 py-1 rounded shadow-lg backdrop-blur-md border border-yellow-800/50">E-sports & IA Generativa</span>
+                        </div>
+                        
+                        <!-- Title Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent pointer-events-none z-20"></div>
+                        <h4 class="text-3xl md:text-4xl font-bold text-white absolute bottom-6 left-8 z-30 drop-shadow-lg">Supremacy 1914: World Championship</h4>
+                    </div>
+
+                    <!-- Content Body -->
+                    <div class="p-8 flex flex-col xl:flex-row gap-8">
+                        <!-- Left Column: The Problem & Solution -->
+                        <div class="flex-1">
+                            <h5 class="text-brand-400 font-semibold mb-3 flex items-center gap-2"><i class="ph-bold ph-globe"></i> Desenvolvimento Web & E-sports</h5>
+                            <p class="text-gray-400 mb-6 leading-relaxed text-sm">
+                                Fui o responsável pela criação e lançamento da plataforma oficial do Campeonato Mundial de Supremacy 1914. Desenvolvi a arquitetura e interface do site para centralizar a comunicação de milhares de jogadores, organizando chaves, regras e atualizações dinâmicas do torneio global de 2022 a 2024.
+                            </p>
+                            
+                            <h5 class="text-brand-400 font-semibold mb-3 flex items-center gap-2"><i class="ph-bold ph-video-camera"></i> Produção Audiovisual com IA Generativa</h5>
+                            <p class="text-gray-400 mb-6 leading-relaxed text-sm">
+                                Além do código, conduzi a direção criativa de todo o material audiovisual promocional. Utilizei ferramentas de Inteligência Artificial Generativa para a síntese de locuções, composição de trilhas sonoras e renderização de vídeos de altíssimo padrão, incluindo a Cerimônia Oficial de Abertura.
+                            </p>
+                            
+                            <h5 class="text-brand-400 font-semibold mb-3 flex items-center gap-2"><i class="ph-bold ph-code"></i> Stack Tecnológica (O "Como")</h5>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">Web Development</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">IA Generativa (Áudio/Vídeo)</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">UI / UX Design</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">Community Management</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column: Results & Metrics -->
+                        <div class="w-full xl:w-[45%] flex flex-col gap-4 justify-center">
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 border-l-4 border-l-yellow-500 hover:bg-slate-800 transition-colors">
+                                <h6 class="text-white font-bold mb-1 flex items-center justify-between">Plataforma Global <i class="ph-fill ph-users text-yellow-500"></i></h6>
+                                <p class="text-gray-400 text-xs leading-relaxed">Centralização de dados para o torneio mundial pela Bytro Labs. O site suportou tráfego e engajamento intenso da comunidade global, mantendo organização e comunicação eficientes.</p>
+                            </div>
+
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 border-l-4 border-l-purple-500 hover:bg-slate-800 transition-colors">
+                                <h6 class="text-white font-bold mb-1 flex items-center justify-between">Direção Criativa por IA <i class="ph-fill ph-magic-wand text-purple-500"></i></h6>
+                                <p class="text-gray-400 text-xs leading-relaxed">Redução drástica de custos e tempo de produção audiovisual. A IA foi usada para sintetizar locuções realistas e criar trilhas envolventes, entregando um material épico para o E-sport.</p>
+                            </div>
+                            
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 border-l-4 border-l-brand-500 hover:bg-slate-800 transition-colors mt-2">
+                                <a href="https://www.youtube.com/watch?v=gKDKSb018sc&t=15s" target="_blank" class="w-full flex items-center justify-center gap-2 bg-brand-600 hover:bg-brand-500 text-white font-semibold py-3 px-4 rounded-lg transition-colors shadow-lg hover:shadow-brand-500/25">
+                                    <i class="ph-fill ph-youtube-logo text-2xl"></i>
+                                    Assistir Cerimônia de Abertura
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -197,54 +282,62 @@
     <section id="expertise" class="py-24 bg-slate-900 border-t border-slate-800 relative z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-brand-500 font-semibold tracking-wide uppercase text-sm mb-2">Tech Stack</h2>
-                <h3 class="text-3xl md:text-4xl font-bold text-white">Ecossistema de Desenvolvimento</h3>
-                <p class="mt-4 text-gray-400 max-w-2xl mx-auto">Ferramentas focadas em automação extrema, processamento de dados robusto e interfaces corporativas limpas.</p>
+                <h2 class="text-brand-500 font-semibold tracking-wide uppercase text-sm mb-2">Capabilities</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white">Arquitetura & Tecnologia</h3>
+                <p class="mt-4 text-gray-400 max-w-2xl mx-auto">Stacks modernas selecionadas com base em estabilidade corporativa, segurança e capacidade de escalar globalmente.</p>
             </div>
 
+            <!-- Bento Grid -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Card 1 -->
                 <div class="glass-panel p-8 rounded-2xl md:col-span-2 group hover:border-brand-500/50 transition-colors" data-aos="fade-up" data-aos-delay="100">
-                    <i class="ph-duotone ph-brain text-4xl text-brand-400 mb-4"></i>
-                    <h4 class="text-xl font-bold text-white mb-3">Backend, IA & Automação RPA</h4>
+                    <i class="ph-duotone ph-browser text-4xl text-brand-400 mb-4"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Front-end Enterprise</h4>
                     <p class="text-gray-400 mb-6 leading-relaxed">
-                        Criação de scripts autônomos para extração de dados de WMS legado. Desenvolvimento de agentes de Inteligência Artificial usando frameworks RAG e protótipos de visão computacional para rastreamento de fluxo logístico.
+                        Desenvolvimento de SPAs e painéis de controle complexos. Foco em Core Web Vitals, gestão de estado robusta e componentização em larga escala para aplicações B2B.
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">Python</span>
-                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">Flask</span>
-                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">PyAutoGUI / RPA</span>
-                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">LLMs & RAG</span>
-                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">Computer Vision</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">React.js</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">TypeScript</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">Next.js</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">Tailwind CSS</span>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
                 <div class="glass-panel p-8 rounded-2xl group hover:border-brand-500/50 transition-colors" data-aos="fade-up" data-aos-delay="200">
-                    <i class="ph-duotone ph-database text-4xl text-brand-400 mb-4"></i>
-                    <h4 class="text-xl font-bold text-white mb-3">Arquitetura de Dados</h4>
+                    <i class="ph-duotone ph-hard-drives text-4xl text-brand-400 mb-4"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Back-end & APIs</h4>
                     <p class="text-gray-400 mb-6 leading-relaxed">
-                        Modelagem relacional segura e escalável para suportar as transações de ecossistemas logísticos (ERPs/WMS).
+                        Microsserviços, APIs RESTful e GraphQL projetados para alto throughput e baixa latência.
                     </p>
                     <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">Node.js</span>
                         <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">PostgreSQL</span>
-                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">SQLite</span>
-                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">Data Scraping</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">Redis</span>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="glass-panel p-8 rounded-2xl md:col-span-3 group hover:border-brand-500/50 transition-colors" data-aos="fade-up" data-aos-delay="300">
-                    <i class="ph-duotone ph-browser text-4xl text-brand-400 mb-4"></i>
-                    <h4 class="text-xl font-bold text-white mb-3">Interfaces B2B (Front-end)</h4>
+                <div class="glass-panel p-8 rounded-2xl group hover:border-brand-500/50 transition-colors" data-aos="fade-up" data-aos-delay="300">
+                    <i class="ph-duotone ph-globe-hemisphere-west text-4xl text-brand-400 mb-4"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Internacionalização</h4>
+                    <p class="text-gray-400 leading-relaxed">
+                        Arquiteturas prontas para i18n, lidando com fusos horários complexos, multi-moedas e adaptação cultural de interfaces (IT, EN, PT).
+                    </p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-panel p-8 rounded-2xl md:col-span-2 group hover:border-brand-500/50 transition-colors" data-aos="fade-up" data-aos-delay="400">
+                    <i class="ph-duotone ph-shield-check text-4xl text-brand-400 mb-4"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Boas Práticas & Integração Contínua</h4>
                     <p class="text-gray-400 mb-6 leading-relaxed">
-                        Estilização de aplicações focadas em baixa carga cognitiva baseadas em frameworks como IBM Carbon e Atlassian. Painéis que entregam a informação exata (déficits reais vs. estoques aparentes) para tomadas de decisão rápidas na operação.
+                        Trabalho baseado em metodologias ágeis, testes automatizados (Jest/Cypress), code reviews rigorosos e pipelines de CI/CD garantindo entregas sem interrupções (Zero Downtime Deployments).
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">React.js</span>
-                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">Flet</span>
-                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">Tailwind CSS</span>
-                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">UX/UI Corporativo</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">Docker</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">Git / GitHub Actions</span>
+                        <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded-md text-xs font-medium text-gray-300">AWS / Cloudflare</span>
                     </div>
                 </div>
             </div>
@@ -255,8 +348,8 @@
     <section id="experience" class="py-24 bg-slate-850 relative">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-brand-500 font-semibold tracking-wide uppercase text-sm mb-2">Trajetória</h2>
-                <h3 class="text-3xl md:text-4xl font-bold text-white">Do Chão de Fábrica ao Código</h3>
+                <h2 class="text-brand-500 font-semibold tracking-wide uppercase text-sm mb-2">Trajetória Profissional</h2>
+                <h3 class="text-3xl md:text-4xl font-bold text-white">Experiência Consolidada</h3>
             </div>
 
             <div class="relative border-l border-slate-700 ml-4 md:ml-0 space-y-12 pb-4">
@@ -265,12 +358,12 @@
                 <div class="relative pl-8 md:pl-12" data-aos="fade-up">
                     <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-brand-500 rounded-full shadow-[0_0_10px_rgba(14,165,233,0.8)]"></div>
                     <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-2">
-                        <h4 class="text-xl font-bold text-white">Desenvolvedor Interno & Operador Logístico</h4>
-                        <span class="text-sm font-medium text-brand-400 mt-1 sm:mt-0">Atual</span>
+                        <h4 class="text-xl font-bold text-white">Desenvolvedor de Automação (RPA) e IA</h4>
+                        <span class="text-sm font-medium text-brand-400 mt-1 sm:mt-0">2024 - Presente</span>
                     </div>
-                    <h5 class="text-lg text-gray-300 mb-4 font-medium">Grupo Positivo (Posigraf)</h5>
+                    <h5 class="text-lg text-gray-300 mb-4 font-medium">Posigraf (Grupo Positivo)</h5>
                     <p class="text-gray-400 leading-relaxed mb-4">
-                        Atuação dupla integrando a rotina física do armazém (conferência, gestão de docas) com o desenvolvimento ativo de soluções de software corporativas. Responsável pela criação de automações RPA para extração de dados do WMS, desenvolvimento do ecossistema ERP 'PosiSphere' e implementação do assistente virtual de IA 'PosiBot'. Atuação direta na CIPA para otimização de fluxos e layouts de segurança.
+                        Criação da plataforma PosiSphere (WMS/YMS) e PosiBot. Liderança técnica na automação de processos logísticos, implantação de modelos de IA (RAG) para consulta de estoques e controle de hardware no pátio, gerando impacto reconhecido pelo Prêmio Kaizen.
                     </p>
                 </div>
 
@@ -278,11 +371,12 @@
                 <div class="relative pl-8 md:pl-12" data-aos="fade-up" data-aos-delay="100">
                     <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-slate-600 rounded-full border-2 border-slate-850"></div>
                     <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-2">
-                        <h4 class="text-xl font-bold text-white">Operações Logísticas</h4>
+                        <h4 class="text-xl font-bold text-white">Front-end Developer</h4>
+                        <span class="text-sm font-medium text-gray-500 mt-1 sm:mt-0">2022 - 2024</span>
                     </div>
-                    <h5 class="text-lg text-gray-300 mb-4 font-medium">FedEx</h5>
+                    <h5 class="text-lg text-gray-300 mb-4 font-medium">Bytro Labs GmbH</h5>
                     <p class="text-gray-400 leading-relaxed mb-4">
-                        Experiência sólida na base da cadeia de suprimentos corporativa, compreendendo os fluxos de distribuição, gargalos de transporte e as necessidades reais dos operadores logísticos de ponta a ponta.
+                        Desenvolvimento de interfaces escaláveis e dinâmicas utilizando frameworks modernos, além de imersão no ecossistema web e criação de mídias otimizadas por IA.
                     </p>
                 </div>
 
@@ -290,11 +384,25 @@
                 <div class="relative pl-8 md:pl-12" data-aos="fade-up" data-aos-delay="200">
                     <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-slate-600 rounded-full border-2 border-slate-850"></div>
                     <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-2">
-                        <h4 class="text-xl font-bold text-white">Militar - 11º Centro de Telemática</h4>
+                        <h4 class="text-xl font-bold text-white">Assistente de Logística</h4>
+                        <span class="text-sm font-medium text-gray-500 mt-1 sm:mt-0">2020 - 2022</span>
                     </div>
-                    <h5 class="text-lg text-gray-300 mb-4 font-medium">Exército Brasileiro</h5>
+                    <h5 class="text-lg text-gray-300 mb-4 font-medium">FedEx</h5>
                     <p class="text-gray-400 leading-relaxed mb-4">
-                        Base disciplinar e técnica adquirida durante o serviço na unidade de Telemática, focada em segurança de dados corporativos e militares, estruturando um mindset analítico e voltado para missões críticas.
+                        Vivência intensa no "chão de fábrica", controlando a malha logística, fluxos físicos, Doca e inventário. Essa base fundamental permite desenhar as regras de negócio reais por trás das automações e arquiteturas corporativas de hoje.
+                    </p>
+                </div>
+
+                <!-- Job 4 -->
+                <div class="relative pl-8 md:pl-12" data-aos="fade-up" data-aos-delay="300">
+                    <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 bg-slate-600 rounded-full border-2 border-slate-850"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between mb-2">
+                        <h4 class="text-xl font-bold text-white">Web Designer Wordpress</h4>
+                        <span class="text-sm font-medium text-gray-500 mt-1 sm:mt-0">2018 - 2020</span>
+                    </div>
+                    <h5 class="text-lg text-gray-300 mb-4 font-medium">FPR Marketing e Publicidade</h5>
+                    <p class="text-gray-400 leading-relaxed mb-4">
+                        Construção dos fundamentos de UI/UX, layouts para e-commerce e experiência de usuário, fundamentais para a criação das interfaces limpas e conversivas nos ecossistemas atuais.
                     </p>
                 </div>
             </div>
@@ -306,87 +414,316 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16" data-aos="fade-up">
                 <div>
-                    <h2 class="text-brand-500 font-semibold tracking-wide uppercase text-sm mb-2">Portfólio Aplicado</h2>
-                    <h3 class="text-3xl md:text-4xl font-bold text-white">Sistemas & Integrações</h3>
+                    <h2 class="text-brand-500 font-semibold tracking-wide uppercase text-sm mb-2">Case Studies</h2>
+                    <h3 class="text-3xl md:text-4xl font-bold text-white">Soluções Desenvolvidas</h3>
                 </div>
-                <p class="text-gray-400 max-w-md mt-4 md:mt-0 md:text-right">Sistemas criados e validados diretamente no ambiente de produção de um grande player industrial.</p>
+                <p class="text-gray-400 max-w-md mt-4 md:mt-0 md:text-right">Aplicações focadas em resolver problemas reais de negócios, otimizar processos e lidar com grandes volumes de dados.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 
-                <!-- Project 1: PosiBot & PosiSphere -->
-                <div class="group glass-panel rounded-2xl overflow-hidden border border-slate-700/50 hover:border-brand-500/30 transition-all duration-300 flex flex-col h-full" data-aos="fade-up">
-                    <div class="p-6">
-                        <!-- ESPAÇO PARA O SEU VÍDEO / IMAGEM -->
-                        <div class="aspect-video bg-slate-800 rounded-lg mb-6 overflow-hidden relative border border-slate-700 flex items-center justify-center">
-                            <!-- Substitua a tag <img ...> ou adicione um <video controls class="w-full h-full object-cover">...</video> aqui -->
-                            <img src="/api/placeholder/800/450" alt="Interface do PosiSphere" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                <!-- Project 3: O Grande Total do Posibot -->
+                <div class="group glass-panel rounded-2xl border border-slate-700/50 hover:border-brand-500/50 transition-all duration-300 flex flex-col md:col-span-2 relative mt-16 md:mt-20" data-aos="fade-up" data-aos-delay="200">
+                    
+                    <!-- Medal Overlay (Protruding outside) -->
+                    <div class="absolute -top-10 -left-6 md:-left-8 z-40">
+                        <img src="kaizen2025 (1).png" alt="Melhor Solução 2025" class="w-28 h-28 md:w-36 md:h-36 object-contain drop-shadow-[0_10px_20px_rgba(234,179,8,0.5)] hover:scale-105 transition-transform duration-300" title="Premiação Kaizen: Melhor Solução 2025" />
+                    </div>
+
+                    <!-- Header with Image Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 h-64 md:h-96 bg-slate-800 relative overflow-hidden rounded-t-2xl">
+                        
+                        <!-- Left Images Complex Grid (md:col-span-2) -->
+                        <div class="hidden md:flex flex-col h-full border-b md:border-b-0 border-r-0 md:border-r border-slate-700/50 md:col-span-2">
+                            
+                            <!-- Top row: 2 images side-by-side -->
+                            <div class="flex flex-row h-1/2 border-b border-slate-700/50">
+                                <div class="relative w-1/2 h-full border-r border-slate-700/50 overflow-hidden">
+                                    <img src="escritorioposiphere.png" alt="Equipe no Escritório" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700 delay-75" />
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent pointer-events-none"></div>
+                                    <div class="absolute bottom-2 left-2 md:bottom-4 md:left-4 z-10">
+                                        <span class="text-[10px] font-semibold text-gray-300 bg-slate-800/80 px-2 py-0.5 md:py-1 rounded backdrop-blur-md border border-slate-600/50">Adoção pela Equipe</span>
+                                    </div>
+                                </div>
+                                <div class="relative w-1/2 h-full overflow-hidden">
+                                    <img src="gestaoestoquebi.jpg" alt="Gestão de Estoque BI" class="absolute inset-0 w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700 delay-150" />
+                                    <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent pointer-events-none"></div>
+                                    <div class="absolute bottom-2 left-2 md:bottom-4 md:left-4 z-10">
+                                        <span class="text-[10px] font-semibold text-gray-300 bg-slate-800/80 px-2 py-0.5 md:py-1 rounded backdrop-blur-md border border-slate-600/50">Gestão e BI</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Bottom row: 1 image full width -->
+                            <div class="relative h-1/2 overflow-hidden bg-slate-900 flex items-center justify-center">
+                                <img src="Foto Premio trimestre2025.png" alt="Prêmio Trimestral 2025" class="absolute inset-0 w-full h-full object-contain p-2 md:p-4 opacity-100 group-hover:scale-105 transition-all duration-700 delay-200" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent pointer-events-none"></div>
+                                <div class="absolute bottom-4 left-4 z-10">
+                                    <span class="text-xs font-semibold text-brand-400 bg-brand-950 px-2 py-1 rounded shadow-lg backdrop-blur-md border border-brand-800/50">Destaque Trimestral 2025</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <!-- Main Image: Premiação (Now on the right, taking 1 column) -->
+                        <div class="relative h-full overflow-hidden bg-slate-900 flex items-center justify-center">
+                            <img src="premio2025anual.jfif" alt="Premiação Kaizen 2025" class="absolute inset-0 w-full h-full object-contain p-2 md:p-4 opacity-100 group-hover:scale-105 transition-all duration-700" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-transparent pointer-events-none"></div>
+                            <div class="absolute bottom-4 left-4 z-10">
+                                <span class="text-[10px] md:text-xs font-semibold text-brand-400 bg-brand-950 px-2 py-1 rounded shadow-lg backdrop-blur-md border border-brand-800/50">Kaizen: Melhor Solução</span>
+                            </div>
                         </div>
                         
-                        <h4 class="text-2xl font-bold text-white mb-2">PosiSphere & PosiBot (IA)</h4>
-                        <p class="text-gray-400 mb-6 leading-relaxed">
-                            Desenvolvimento completo de um ecossistema ERP/WMS interno, complementado por um assistente de Inteligência Artificial integrado capaz de otimizar rotinas administrativas e operacionais. Projeto vencedor do prêmio corporativo interno.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs font-semibold text-brand-400 bg-brand-950 px-2 py-1 rounded">ERP / WMS</span>
-                            <span class="text-xs text-gray-400 bg-slate-800 px-2 py-1 rounded">Python</span>
-                            <span class="text-xs text-gray-400 bg-slate-800 px-2 py-1 rounded">RAG / IA</span>
-                            <span class="text-xs text-gray-400 bg-slate-800 px-2 py-1 rounded">Flet / React</span>
+                        <!-- Title Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent pointer-events-none z-20"></div>
+                        <h4 class="text-3xl md:text-4xl font-bold text-white absolute bottom-6 left-8 z-30 drop-shadow-lg">PosiBot: IA Integrada ao WMS</h4>
+                    </div>
+
+                    <!-- Content Body -->
+                    <div class="p-8 flex flex-col xl:flex-row gap-8">
+                        <!-- Left Column: The Problem & Solution -->
+                        <div class="flex-1">
+                            <h5 class="text-brand-400 font-semibold mb-3 flex items-center gap-2"><i class="ph-bold ph-trophy"></i> Reconhecimento Corporativo 2025 - Grupo Positivo</h5>
+                            <p class="text-gray-400 mb-6 leading-relaxed text-sm">
+                                Consolidando todas as soluções do ecossistema PosiSphere, o impacto foi tão profundo na cadeia logística que o projeto foi coroado como a <strong>Melhor Solução do Ano de 2025</strong>. Eliminamos processos braçais, substituímos sistemas legados e devolvemos inteligência tática à operação.
+                            </p>
+                            
+                            <h5 class="text-brand-400 font-semibold mb-3 flex items-center gap-2"><i class="ph-bold ph-chart-line-up"></i> Retorno Financeiro Direto</h5>
+                            <p class="text-gray-400 mb-6 leading-relaxed text-sm">
+                                O balanço operacional comprovou a recuperação de mais de <strong>3.300 horas anuais</strong> de trabalho. Em impacto direto de negócios (Saving na folha analítica e otimizações logísticas), o projeto entregou um retorno de <strong>mais de R$ 60.000,00 anuais</strong> no seu ciclo base.
+                            </p>
+                            
+                            <h5 class="text-brand-400 font-semibold mb-3 flex items-center gap-2"><i class="ph-bold ph-code"></i> Stack Tecnológica (Ecossistema)</h5>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">Python / Flask</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">Node.js / React</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">Vanilla HTML / JS</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">SQLite & ChromaDB</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column: Results & Metrics -->
+                        <div class="w-full xl:w-[45%] flex flex-col gap-4 justify-center">
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 border-l-4 border-l-blue-500 hover:bg-slate-800 transition-colors">
+                                <h6 class="text-white font-bold mb-1 flex items-center justify-between">Aceleração de Consultas <i class="ph-fill ph-rocket text-blue-500"></i></h6>
+                                <p class="text-gray-400 text-xs leading-relaxed">Fim do deslocamento excessivo e da lentidão do sistema WMS, garantindo uma <strong class="text-blue-400 text-sm">aceleração de 99% na busca</strong> por dados e recuperação de milhares de horas operacionais.</p>
+                            </div>
+
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 border-l-4 border-l-purple-500 hover:bg-slate-800 transition-colors">
+                                <h6 class="text-white font-bold mb-1 flex items-center justify-between">Automação Inteligente <i class="ph-fill ph-robot text-purple-500"></i></h6>
+                                <p class="text-gray-400 text-xs leading-relaxed">Implantação de <strong class="text-purple-400 text-sm">Auditoria Visual por IA</strong> (zerando o desgaste de máquinas Lift) e de Agentes Autônomos (RPA) operando diretamente os sistemas logísticos.</p>
+                            </div>
+                            
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 border-l-4 border-l-emerald-500 hover:bg-slate-800 transition-colors">
+                                <h6 class="text-white font-bold mb-1 flex items-center justify-between">Inteligência Tática (BI) <i class="ph-fill ph-chart-pie-slice text-emerald-500"></i></h6>
+                                <p class="text-gray-400 text-xs leading-relaxed">Automação de relatórios táticos através de Painéis de Gestão Integrados. O sistema liberou <strong class="text-emerald-400 text-sm">centenas de horas estratégicas</strong> da equipe analítica (saving maciço na folha).</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 2: RPA e Visão Computacional -->
-                <div class="group glass-panel rounded-2xl overflow-hidden border border-slate-700/50 hover:border-brand-500/30 transition-all duration-300 flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
-                    <div class="p-6">
-                        <!-- ESPAÇO PARA O SEU VÍDEO / IMAGEM -->
-                        <div class="aspect-video bg-slate-800 rounded-lg mb-6 overflow-hidden relative border border-slate-700 flex items-center justify-center">
-                            <!-- Substitua a tag <img ...> ou adicione um <video controls class="w-full h-full object-cover">...</video> aqui -->
-                            <img src="/api/placeholder/800/450" alt="Script RPA funcionando" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
-                        </div>
+<!-- Project 1: Featured Case Study (Mapa com IA 2D/3D) -->
+                <div class="group glass-panel rounded-2xl border border-slate-700/50 hover:border-brand-500/50 transition-all duration-300 flex flex-col md:col-span-2 relative mt-8 md:mt-12" data-aos="fade-up">
+                    
+                    <!-- Medal Overlay (Protruding outside) -->
+                    <div class="absolute -top-10 -left-6 md:-left-8 z-40">
+                        <img src="kaizen2026.png" alt="Melhor Solução 2026" class="w-28 h-28 md:w-36 md:h-36 object-contain drop-shadow-[0_10px_20px_rgba(234,179,8,0.5)] hover:scale-105 transition-transform duration-300" title="Premiação Kaizen: Melhor Solução do Ano" />
+                    </div>
 
-                        <h4 class="text-2xl font-bold text-white mb-2">Automação WMS & Visão Computacional</h4>
-                        <p class="text-gray-400 mb-6 leading-relaxed">
-                            Engenharia de scripts RPA com Python e atalhos do Windows para realizar scraping autônomo (unattended) de dados de um WMS legado diretamente para Excel. Inclui protótipo de rastreamento de fluxo via câmeras operacionais.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="text-xs font-semibold text-green-400 bg-green-950/30 px-2 py-1 rounded border border-green-900/50">Logistics Tech</span>
-                            <span class="text-xs text-gray-400 bg-slate-800 px-2 py-1 rounded">PyAutoGUI</span>
-                            <span class="text-xs text-gray-400 bg-slate-800 px-2 py-1 rounded">Computer Vision</span>
-                            <span class="text-xs text-gray-400 bg-slate-800 px-2 py-1 rounded">Data Scraping</span>
+                    <!-- Header with Image Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 h-64 md:h-80 bg-slate-800 relative overflow-hidden rounded-t-2xl">
+                        <div class="relative h-full overflow-hidden border-b md:border-b-0 border-r-0 md:border-r border-slate-700/50">
+                            <img src="mapa2d.jpg" alt="Mapa 2D" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 z-10 pl-16 md:pl-0">
+                                <span class="text-xs font-semibold text-emerald-400 bg-emerald-950 px-2 py-1 rounded shadow-lg backdrop-blur-md border border-emerald-800/50">Planta 2D Inteligente</span>
+                            </div>
+                        </div>
+                        <div class="relative h-full overflow-hidden">
+                            <img src="mapa3d.jpg" alt="Mapa 3D" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 delay-75" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 z-10">
+                                <span class="text-xs font-semibold text-purple-400 bg-purple-950 px-2 py-1 rounded shadow-lg backdrop-blur-md border border-purple-800/50">Imersão 3D Integrada</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Title Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent pointer-events-none z-20"></div>
+                        <h4 class="text-3xl md:text-4xl font-bold text-white absolute bottom-6 left-8 z-30 drop-shadow-lg">Digital Twins: Mapa com IA 2D/3D</h4>
+                    </div>
+
+                    <!-- Content Body -->
+                    <div class="p-8 flex flex-col xl:flex-row gap-8">
+                        <!-- Left Column: The Problem & Solution -->
+                        <div class="flex-1">
+                            <h5 class="text-brand-400 font-semibold mb-3 flex items-center gap-2"><i class="ph-bold ph-target"></i> O Desafio (Antes)</h5>
+                            <p class="text-gray-400 mb-6 leading-relaxed text-sm">
+                                O processo de localização de pallets e auditoria de vagas dependia de consultas textuais lentas no WMS e constantes "buscas cegas" físicas (rondas de empilhadeira) pelo pavilhão. A operação era puramente reativa.
+                            </p>
+                            
+                            <h5 class="text-brand-400 font-semibold mb-3 flex items-center gap-2"><i class="ph-bold ph-lightbulb"></i> A Solução: Mapeamento Visual e IA</h5>
+                            <p class="text-gray-400 mb-6 leading-relaxed text-sm">
+                                Criação de uma interface web interativa que mapeia o armazém com regras visuais intuitivas. Com a integração de IA, o sistema consome os dados do WMS em tempo real e destaca divergências proativamente em planta baixa (2D) e espacial (3D), como sobrepeso ou obsolescência. O sistema "pensa" junto com o operador.
+                            </p>
+
+                            <h5 class="text-brand-400 font-semibold mb-3 flex items-center gap-2"><i class="ph-bold ph-git-merge"></i> Padronização & Escalabilidade</h5>
+                            <p class="text-gray-400 leading-relaxed text-sm mb-6">
+                                Aplicação padronizada para Desktops (liderança) e Mobile/Tablets (chão de fábrica). Arquitetura escalável provada como PoC e pronta para expansão (Almoxarifado de Manutenção e Fluxo WIP) integrando todo o ecossistema logístico.
+                            </p>
+                            
+                            <h5 class="text-brand-400 font-semibold mb-3 flex items-center gap-2"><i class="ph-bold ph-code"></i> Stack Tecnológica (O "Como")</h5>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">Python</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">Flet / React</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">Integração LLM</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">WMS Scraping</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">WebGL (3D Rendering)</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column: Results & Metrics -->
+                        <div class="w-full xl:w-[45%] flex flex-col gap-4 justify-center">
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 border-l-4 border-l-emerald-500 hover:bg-slate-800 transition-colors">
+                                <h6 class="text-white font-bold mb-1 flex items-center justify-between">Produtividade <i class="ph-fill ph-trend-up text-emerald-500"></i></h6>
+                                <p class="text-gray-400 text-xs leading-relaxed">Fim das buscas cegas e gargalos. <strong class="text-emerald-400 text-sm">Ganho expressivo de capacidade operacional</strong> com milhares de horas anuais devolvidas à equipe. Aceleração do tempo de resposta logístico.</p>
+                            </div>
+                            
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 border-l-4 border-l-blue-500 hover:bg-slate-800 transition-colors">
+                                <h6 class="text-white font-bold mb-1 flex items-center justify-between">Qualidade e Capital <i class="ph-fill ph-shield-check text-blue-500"></i></h6>
+                                <p class="text-gray-400 text-xs leading-relaxed">Monitoramento IA 24/7 sobre todo o inventário. Alertas preventivos contra materiais imobilizados ou obsoletos, protegendo <strong class="text-blue-400 text-sm">alto volume de capital de risco</strong> da companhia.</p>
+                            </div>
+                            
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 border-l-4 border-l-orange-500 hover:bg-slate-800 transition-colors">
+                                <h6 class="text-white font-bold mb-1 flex items-center justify-between">Segurança Operacional <i class="ph-fill ph-warning-circle text-orange-500"></i></h6>
+                                <p class="text-gray-400 text-xs leading-relaxed">Prevenção estrutural proativa (Ex: bloqueio visual de docas ou posições com excesso de peso). Redução contínua do tráfego de empilhadeiras (Lift) eliminando riscos de acidentes com pedestres.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-            </div>
+                <!-- Project 2: YMS DockPro -->
+                <div class="group glass-panel rounded-2xl border border-slate-700/50 hover:border-brand-500/50 transition-all duration-300 flex flex-col md:col-span-2 relative mt-16 md:mt-20" data-aos="fade-up" data-aos-delay="100">
+                    
+                    <!-- Kaizen Competition Badge (Protruding outside) -->
+                    <div class="absolute -top-5 -left-4 md:-left-6 z-40">
+                        <div class="bg-gradient-to-r from-yellow-600 to-yellow-500 text-slate-900 font-bold px-4 py-2 rounded-lg shadow-[0_5px_15px_rgba(234,179,8,0.4)] flex items-center gap-2 -rotate-2 border-2 border-yellow-300 hover:rotate-0 transition-transform duration-300">
+                            <i class="ph-fill ph-star text-lg"></i>
+                            <span class="text-xs md:text-sm tracking-wide">Concorrendo: Melhor Solução Kaizen 2º Ciclo 2026 (Grupo Positivo)</span>
+                        </div>
+                    </div>
+
+                    <!-- Header with Image Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 h-64 md:h-96 bg-slate-800 relative overflow-hidden rounded-t-2xl">
+                        
+                        <!-- Main Image: Login -->
+                        <div class="relative h-full overflow-hidden border-b md:border-b-0 border-r-0 md:border-r border-slate-700/50 md:col-span-2">
+                            <img src="recebimentoymslogin.png" alt="Posibot DockPro Login" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                            <div class="absolute bottom-4 left-4 z-10">
+                                <span class="text-xs font-semibold text-brand-400 bg-brand-950 px-2 py-1 rounded shadow-lg backdrop-blur-md border border-brand-800/50">Portaria DockPro (Login)</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Secondary Images Stacked -->
+                        <div class="hidden md:flex flex-col h-full border-r border-slate-700/50">
+                            <div class="relative h-1/2 overflow-hidden border-b border-slate-700/50">
+                                <img src="operador.jpg" alt="Operador no chão de fábrica" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 delay-75" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                                <div class="absolute bottom-2 left-2 z-10">
+                                    <span class="text-[10px] font-semibold text-gray-300 bg-slate-800/80 px-2 py-0.5 rounded backdrop-blur-md border border-slate-600/50">Mobilidade Operacional</span>
+                                </div>
+                            </div>
+                            <div class="relative h-1/2 overflow-hidden">
+                                <img src="Recebimentoyms.jpg" alt="Dashboard Torre de Controle" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 delay-150" />
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                                <div class="absolute bottom-2 left-2 z-10">
+                                    <span class="text-[10px] font-semibold text-gray-300 bg-slate-800/80 px-2 py-0.5 rounded backdrop-blur-md border border-slate-600/50">Dashboard YMS</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Title Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent pointer-events-none z-20"></div>
+                        <h4 class="text-3xl md:text-4xl font-bold text-white absolute bottom-6 left-8 z-30 drop-shadow-lg">Portaria DockPro (YMS)</h4>
+                    </div>
+
+                    <!-- Content Body -->
+                    <div class="p-8 flex flex-col xl:flex-row gap-8">
+                        <!-- Left Column: The Problem & Solution -->
+                        <div class="flex-1">
+                            <h5 class="text-brand-400 font-semibold mb-3 flex items-center gap-2"><i class="ph-bold ph-target"></i> O Desafio (Antes)</h5>
+                            <p class="text-gray-400 mb-6 leading-relaxed text-sm">
+                                O controle de pátio dependia de planilhas manuais e sistemas engessados. A comunicação entre Portaria e Logística era via rádio e WhatsApp, gerando gargalos, desencontros de informação e alto risco de compliance no recebimento.
+                            </p>
+                            
+                            <h5 class="text-brand-400 font-semibold mb-3 flex items-center gap-2"><i class="ph-bold ph-lightbulb"></i> A Solução: YMS em Tempo Real</h5>
+                            <p class="text-gray-400 mb-6 leading-relaxed text-sm">
+                                Transformação da Portaria no gatilho digital do ecossistema. Desenvolvemos uma aplicação SaaS que aciona cronômetros de SLA ao vivo. O motor de tempo real espelha os status instantaneamente para o setor Fiscal e Logística através da Torre de Controle, aposentando softwares legados terceirizados.
+                            </p>
+
+                            <h5 class="text-brand-400 font-semibold mb-3 flex items-center gap-2"><i class="ph-bold ph-git-merge"></i> Padronização & Governança</h5>
+                            <p class="text-gray-400 leading-relaxed text-sm mb-6">
+                                Ferramenta oficial para 100% das entradas/coletas. A rastreabilidade passou para linhas do tempo dinâmicas imutáveis baseadas em "Identity Keys" (Placa + Horário). Adoção cruzada provada em Logística, PCP e Suprimentos com nota de satisfação de 9,8.
+                            </p>
+                            
+                            <h5 class="text-brand-400 font-semibold mb-3 flex items-center gap-2"><i class="ph-bold ph-code"></i> Stack Tecnológica (O "Como")</h5>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">Python / Flask</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">Vanilla JS</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">WebSockets (SocketIO)</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">HTML / CSS (UI)</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-600 rounded text-xs font-semibold text-gray-300 hover:bg-slate-700 transition-colors cursor-default">Legacy API Sync</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column: Results & Metrics -->
+                        <div class="w-full xl:w-[45%] flex flex-col gap-4 justify-center">
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 border-l-4 border-l-blue-500 hover:bg-slate-800 transition-colors">
+                                <h6 class="text-white font-bold mb-1 flex items-center justify-between">Redução de Custos (Saving) <i class="ph-fill ph-money text-blue-500"></i></h6>
+                                <p class="text-gray-400 text-xs leading-relaxed">Absorção completa da gestão de pátio via engenharia in-house. <strong class="text-blue-400 text-sm">Saving de 100%</strong> nos custos recorrentes de licenciamento de software YMS terceirizado, provando autonomia tecnológica.</p>
+                            </div>
+
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 border-l-4 border-l-emerald-500 hover:bg-slate-800 transition-colors">
+                                <h6 class="text-white font-bold mb-1 flex items-center justify-between">Produtividade <i class="ph-fill ph-trend-up text-emerald-500"></i></h6>
+                                <p class="text-gray-400 text-xs leading-relaxed">Fim absoluto dos avisos via rádio/WhatsApp. O tempo médio de interrupção da equipe para follow-up caiu de <strong class="text-emerald-400 text-sm">10 minutos por veículo para zero</strong>. A Torre de Controle dita o ritmo automaticamente.</p>
+                            </div>
+                            
+                            <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700/50 border-l-4 border-l-purple-500 hover:bg-slate-800 transition-colors">
+                                <h6 class="text-white font-bold mb-1 flex items-center justify-between">Qualidade (NPS 9,8) <i class="ph-fill ph-star text-purple-500"></i></h6>
+                                <p class="text-gray-400 text-xs leading-relaxed">Taxa de erro por duplicidade caiu a zero devido aos registros imutáveis. O projeto superou a meta inicial, alcançando <strong class="text-purple-400 text-sm">nota de satisfação 9,8</strong> entre dezenas de usuários diretos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                            </div>
         </div>
     </section>
 
     <!-- Contact -->
     <section id="contact" class="py-24 bg-slate-850 border-t border-slate-800 relative overflow-hidden">
+        <!-- Decoration -->
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-600/10 blur-[100px] rounded-full pointer-events-none"></div>
 
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <i class="ph-duotone ph-code text-5xl text-brand-500 mb-6 mx-auto"></i>
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Vamos escalar a sua operação logística?</h2>
+            <i class="ph-duotone ph-envelope-open text-5xl text-brand-500 mb-6 mx-auto"></i>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Vamos discutir seu próximo projeto?</h2>
             <p class="text-lg text-gray-400 mb-10 leading-relaxed">
-                A ponte entre o que a diretoria analisa e o que o armazém realmente executa. Aberto a projetos que exijam integração sistêmica, redução de gargalos e desenvolvimento B2B.
+                Estou aberto a oportunidades globais e projetos desafiadores que exijam qualidade técnica e comprometimento com as regras de negócio.
             </p>
             
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="mailto:seu-email@exemplo.com" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-lg text-white bg-brand-600 hover:bg-brand-500 shadow-lg shadow-brand-500/25 transition-all duration-200">
+                <a href="mailto:contato@cristianomachado.com" class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-lg text-white bg-brand-600 hover:bg-brand-500 shadow-lg shadow-brand-500/25 transition-all duration-200">
                     <i class="ph-fill ph-envelope mr-2"></i> Iniciar Conversa
                 </a>
-                <a href="https://linkedin.com/in/seu-perfil" target="_blank" class="inline-flex items-center justify-center px-8 py-4 border border-slate-600 text-base font-medium rounded-lg text-gray-300 bg-slate-800 hover:bg-slate-700 hover:text-white transition-all duration-200">
+                <a href="https://linkedin.com" target="_blank" class="inline-flex items-center justify-center px-8 py-4 border border-slate-600 text-base font-medium rounded-lg text-gray-300 bg-slate-800 hover:bg-slate-700 hover:text-white transition-all duration-200">
                     <i class="ph-fill ph-linkedin-logo mr-2"></i> Conectar no LinkedIn
                 </a>
             </div>
             
-            <div class="mt-12 flex items-center justify-center gap-6 text-gray-500 text-sm flex-wrap">
-                <span class="flex items-center gap-1"><i class="ph-fill ph-map-pin"></i> Curitiba, PR - Brasil / Remoto</span>
-                <span class="flex items-center gap-1"><i class="ph-fill ph-translate"></i> PT | EN | IT</span>
+            <div class="mt-12 flex items-center justify-center gap-6 text-gray-500 text-sm">
+                <span class="flex items-center gap-1"><i class="ph-fill ph-map-pin"></i> Brasil / Remote Global</span>
+                <span class="flex items-center gap-1"><i class="ph-fill ph-translate"></i> PT | EN | IT (Intermediário)</span>
             </div>
         </div>
     </section>
@@ -400,9 +737,10 @@
                 </div>
                 <span class="text-sm font-semibold text-gray-300">Cristiano Machado</span>
             </div>
-            <p class="text-gray-500 text-sm">&copy; 2026. Código e Arquitetura focados no mundo real.</p>
+            <p class="text-gray-500 text-sm">&copy; 2026. Code architecture engineered with precision.</p>
             <div class="flex gap-4 text-gray-500">
-                <a href="https://github.com/seu-usuario" target="_blank" class="hover:text-white transition-colors"><i class="ph-fill ph-github-logo text-xl"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-github-logo text-xl"></i></a>
+                <a href="#" class="hover:text-white transition-colors"><i class="ph-fill ph-twitter-logo text-xl"></i></a>
             </div>
         </div>
     </footer>
@@ -410,19 +748,28 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true, offset: 50, duration: 800 });
+        // Initialize Animations
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+        });
 
+        // Corporate Network / Logistics Routes Animation on Canvas
         const canvas = document.getElementById('network-canvas');
         const ctx = canvas.getContext('2d');
+        
         let width, height;
         let particles = [];
         
-        const particleCount = 60;
+        // Configuration
+        const particleCount = 60; // Represents nodes/servers/hubs
         const connectionDistance = 150;
         const speed = 0.5;
 
         function resize() {
             width = canvas.width = window.innerWidth;
+            // Height covers the hero section
             const heroSection = document.querySelector('section');
             height = canvas.height = heroSection.offsetHeight;
         }
@@ -442,6 +789,8 @@
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
+
+                // Bounce off edges gently
                 if (this.x < 0 || this.x > width) this.vx *= -1;
                 if (this.y < 0 || this.y > height) this.vy *= -1;
             }
@@ -449,11 +798,12 @@
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(14, 165, 233, 0.4)'; 
+                ctx.fillStyle = 'rgba(14, 165, 233, 0.4)'; // Brand blue
                 ctx.fill();
             }
         }
 
+        // Initialize particles
         for (let i = 0; i < particleCount; i++) {
             particles.push(new Particle());
         }
@@ -465,6 +815,7 @@
                 particles[i].update();
                 particles[i].draw();
 
+                // Draw connections simulating data flow or logistics routes
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
                     const dy = particles[i].y - particles[j].y;
@@ -474,6 +825,7 @@
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
+                        // Opacity based on distance
                         const opacity = 1 - (distance / connectionDistance);
                         ctx.strokeStyle = `rgba(14, 165, 233, ${opacity * 0.2})`;
                         ctx.lineWidth = 1;
@@ -481,10 +833,14 @@
                     }
                 }
             }
+
             requestAnimationFrame(animate);
         }
+
+        // Start animation loop
         animate();
 
+        // Navbar scroll effect
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 10) {
